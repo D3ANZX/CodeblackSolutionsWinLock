@@ -35,27 +35,33 @@
             // 
             // encryptionKeyField
             // 
-            encryptionKeyField.Location = new Point(149, 144);
+            encryptionKeyField.Location = new Point(272, 239);
+            encryptionKeyField.Margin = new Padding(4, 4, 4, 4);
             encryptionKeyField.Name = "encryptionKeyField";
-            encryptionKeyField.Size = new Size(349, 23);
+            encryptionKeyField.Size = new Size(448, 27);
             encryptionKeyField.TabIndex = 0;
+            encryptionKeyField.TextAlign = HorizontalAlignment.Center;
             encryptionKeyField.TextChanged += encryptionKeyField_TextChanged;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(226, 110);
+            label1.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.White;
+            label1.Location = new Point(289, 183);
+            label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new Size(172, 15);
+            label1.Size = new Size(431, 41);
             label1.TabIndex = 1;
             label1.Text = "ENTER YOUR ENCRYPTION KEY";
             // 
             // confirm
             // 
             confirm.DialogResult = DialogResult.OK;
-            confirm.Location = new Point(239, 188);
+            confirm.Location = new Point(397, 289);
+            confirm.Margin = new Padding(4, 4, 4, 4);
             confirm.Name = "confirm";
-            confirm.Size = new Size(146, 42);
+            confirm.Size = new Size(188, 59);
             confirm.TabIndex = 2;
             confirm.Text = "Confirm";
             confirm.UseVisualStyleBackColor = true;
@@ -63,12 +69,14 @@
             // 
             // encryptionKeyInputForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(638, 314);
+            BackColor = Color.FromArgb(0, 0, 64);
+            ClientSize = new Size(982, 553);
             Controls.Add(confirm);
             Controls.Add(label1);
             Controls.Add(encryptionKeyField);
+            Margin = new Padding(4, 4, 4, 4);
             Name = "encryptionKeyInputForm";
             Text = "encryptionKeyInputForm";
             ResumeLayout(false);

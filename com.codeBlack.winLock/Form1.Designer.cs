@@ -32,21 +32,35 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WinLock));
             label3 = new Label();
             panel1 = new Panel();
-            label2 = new Label();
-            label1 = new Label();
+            username = new Label();
+            userRole = new Label();
             pictureBox1 = new PictureBox();
-            flowLayoutPanel1 = new FlowLayoutPanel();
+            sidebar = new FlowLayoutPanel();
             decryptButton = new Button();
             button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
-            label4 = new Label();
+            serviceMgr_btn = new Button();
+            accountsMgr_btn = new Button();
+            signOut_btn = new Button();
+            systemTimeText = new Label();
             timer1 = new System.Windows.Forms.Timer(components);
             Timer = new Label();
-            button4 = new Button();
+            label1 = new Label();
+            expirationDate = new Label();
+            panel2 = new Panel();
+            activityLogHeader = new Label();
+            activityLogs = new RichTextBox();
+            panel3 = new Panel();
+            encryptActivityheader = new Label();
+            encryptionLogs = new RichTextBox();
+            panel4 = new Panel();
+            processActivityHeader = new Label();
+            processLogs = new RichTextBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            flowLayoutPanel1.SuspendLayout();
+            sidebar.SuspendLayout();
+            panel2.SuspendLayout();
+            panel3.SuspendLayout();
+            panel4.SuspendLayout();
             SuspendLayout();
             // 
             // label3
@@ -54,75 +68,88 @@
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 26.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.White;
-            label3.Location = new Point(12, 9);
+            label3.Location = new Point(13, 11);
+            label3.Margin = new Padding(4, 0, 4, 0);
             label3.Name = "label3";
-            label3.Size = new Size(164, 47);
+            label3.Size = new Size(207, 60);
             label3.TabIndex = 6;
             label3.Text = "WinLOCK";
             // 
             // panel1
             // 
-            panel1.BackColor = Color.FromArgb(0, 0, 64);
-            panel1.Controls.Add(label2);
-            panel1.Controls.Add(label1);
+            panel1.BackColor = Color.FromArgb(14, 77, 146);
+            panel1.Controls.Add(username);
+            panel1.Controls.Add(userRole);
             panel1.Controls.Add(pictureBox1);
             panel1.Controls.Add(label3);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
+            panel1.Margin = new Padding(4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1000, 62);
+            panel1.Size = new Size(1140, 80);
             panel1.TabIndex = 7;
+            panel1.Paint += panel1_Paint;
             // 
-            // label2
+            // username
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.ForeColor = Color.White;
-            label2.Location = new Point(755, 33);
-            label2.Name = "label2";
-            label2.Size = new Size(191, 21);
-            label2.TabIndex = 11;
-            label2.Text = "SYSTEM ADMINISTRATOR";
-            label2.Click += label2_Click;
+            username.FlatStyle = FlatStyle.Flat;
+            username.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            username.ForeColor = Color.White;
+            username.Location = new Point(749, 16);
+            username.Margin = new Padding(4, 0, 4, 0);
+            username.Name = "username";
+            username.RightToLeft = RightToLeft.Yes;
+            username.Size = new Size(281, 28);
+            username.TabIndex = 10;
+            username.Text = "user";
+            username.TextAlign = ContentAlignment.MiddleLeft;
+            username.Click += username_Click;
             // 
-            // label1
+            // userRole
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.White;
-            label1.Location = new Point(779, 12);
-            label1.Name = "label1";
-            label1.Size = new Size(167, 21);
-            label1.TabIndex = 10;
-            label1.Text = "Florentino Dean P. Gas";
+            userRole.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            userRole.ForeColor = Color.White;
+            userRole.Location = new Point(749, 45);
+            userRole.Margin = new Padding(4, 0, 4, 0);
+            userRole.Name = "userRole";
+            userRole.RightToLeft = RightToLeft.Yes;
+            userRole.Size = new Size(281, 28);
+            userRole.TabIndex = 11;
+            userRole.Text = "role";
+            userRole.TextAlign = ContentAlignment.MiddleLeft;
+            userRole.Click += label2_Click;
             // 
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(952, 16);
+            pictureBox1.Location = new Point(1038, 11);
+            pictureBox1.Margin = new Padding(4);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(36, 38);
+            pictureBox1.Size = new Size(67, 62);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 10;
             pictureBox1.TabStop = false;
             // 
-            // flowLayoutPanel1
+            // sidebar
             // 
-            flowLayoutPanel1.BackColor = Color.FromArgb(0, 0, 64);
-            flowLayoutPanel1.Controls.Add(decryptButton);
-            flowLayoutPanel1.Controls.Add(button1);
-            flowLayoutPanel1.Controls.Add(button2);
-            flowLayoutPanel1.Controls.Add(button3);
-            flowLayoutPanel1.Controls.Add(button4);
-            flowLayoutPanel1.Location = new Point(0, 60);
-            flowLayoutPanel1.Margin = new Padding(0);
-            flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(241, 518);
-            flowLayoutPanel1.TabIndex = 8;
+            sidebar.BackColor = Color.FromArgb(18, 18, 18);
+            sidebar.Controls.Add(decryptButton);
+            sidebar.Controls.Add(button1);
+            sidebar.Controls.Add(serviceMgr_btn);
+            sidebar.Controls.Add(accountsMgr_btn);
+            sidebar.Controls.Add(signOut_btn);
+            sidebar.Location = new Point(0, 80);
+            sidebar.Margin = new Padding(0);
+            sidebar.Name = "sidebar";
+            sidebar.Size = new Size(200, 690);
+            sidebar.TabIndex = 8;
             // 
             // decryptButton
             // 
-            decryptButton.BackColor = Color.FromArgb(0, 0, 64);
+            decryptButton.AutoSize = true;
+            decryptButton.BackColor = Color.FromArgb(18, 18, 18);
             decryptButton.BackgroundImageLayout = ImageLayout.Center;
+            decryptButton.Cursor = Cursors.Hand;
             decryptButton.FlatStyle = FlatStyle.Popup;
             decryptButton.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             decryptButton.ForeColor = Color.White;
@@ -131,9 +158,10 @@
             decryptButton.Location = new Point(0, 0);
             decryptButton.Margin = new Padding(0);
             decryptButton.Name = "decryptButton";
-            decryptButton.Padding = new Padding(25, 0, 0, 0);
-            decryptButton.Size = new Size(241, 95);
+            decryptButton.Padding = new Padding(28, 0, 0, 0);
+            decryptButton.Size = new Size(200, 72);
             decryptButton.TabIndex = 9;
+            decryptButton.TabStop = false;
             decryptButton.Text = "DecryptFile";
             decryptButton.UseMnemonic = false;
             decryptButton.UseVisualStyleBackColor = false;
@@ -141,73 +169,100 @@
             // 
             // button1
             // 
-            button1.BackColor = Color.FromArgb(0, 0, 64);
+            button1.BackColor = Color.FromArgb(18, 18, 18);
             button1.BackgroundImageLayout = ImageLayout.Center;
+            button1.Cursor = Cursors.Hand;
             button1.FlatStyle = FlatStyle.Popup;
             button1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button1.ForeColor = Color.White;
+            button1.ForeColor = Color.WhiteSmoke;
             button1.Image = (Image)resources.GetObject("button1.Image");
             button1.ImageAlign = ContentAlignment.MiddleLeft;
-            button1.Location = new Point(0, 95);
+            button1.Location = new Point(0, 72);
             button1.Margin = new Padding(0);
             button1.Name = "button1";
-            button1.Padding = new Padding(25, 0, 0, 0);
-            button1.Size = new Size(241, 95);
+            button1.Padding = new Padding(28, 0, 0, 0);
+            button1.Size = new Size(200, 72);
             button1.TabIndex = 10;
             button1.Text = "EncryptFile";
             button1.UseMnemonic = false;
             button1.UseVisualStyleBackColor = false;
             button1.Click += encryptButton_Click;
             // 
-            // button2
+            // serviceMgr_btn
             // 
-            button2.BackColor = Color.FromArgb(0, 0, 64);
-            button2.BackgroundImageLayout = ImageLayout.Center;
-            button2.FlatStyle = FlatStyle.Popup;
-            button2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button2.ForeColor = Color.White;
-            button2.Image = (Image)resources.GetObject("button2.Image");
-            button2.ImageAlign = ContentAlignment.MiddleLeft;
-            button2.Location = new Point(0, 190);
-            button2.Margin = new Padding(0);
-            button2.Name = "button2";
-            button2.Padding = new Padding(25, 0, 0, 0);
-            button2.Size = new Size(241, 95);
-            button2.TabIndex = 11;
-            button2.Text = "Services Manager";
-            button2.UseMnemonic = false;
-            button2.UseVisualStyleBackColor = false;
+            serviceMgr_btn.BackColor = Color.FromArgb(18, 18, 18);
+            serviceMgr_btn.BackgroundImageLayout = ImageLayout.Center;
+            serviceMgr_btn.Cursor = Cursors.Hand;
+            serviceMgr_btn.FlatStyle = FlatStyle.Popup;
+            serviceMgr_btn.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            serviceMgr_btn.ForeColor = Color.White;
+            serviceMgr_btn.Image = (Image)resources.GetObject("serviceMgr_btn.Image");
+            serviceMgr_btn.ImageAlign = ContentAlignment.MiddleLeft;
+            serviceMgr_btn.Location = new Point(0, 144);
+            serviceMgr_btn.Margin = new Padding(0);
+            serviceMgr_btn.Name = "serviceMgr_btn";
+            serviceMgr_btn.Padding = new Padding(28, 0, 0, 0);
+            serviceMgr_btn.Size = new Size(200, 72);
+            serviceMgr_btn.TabIndex = 11;
+            serviceMgr_btn.Text = "Services Manager";
+            serviceMgr_btn.UseMnemonic = false;
+            serviceMgr_btn.UseVisualStyleBackColor = false;
             // 
-            // button3
+            // accountsMgr_btn
             // 
-            button3.BackColor = Color.FromArgb(0, 0, 64);
-            button3.BackgroundImageLayout = ImageLayout.Center;
-            button3.FlatStyle = FlatStyle.Popup;
-            button3.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button3.ForeColor = Color.White;
-            button3.Image = (Image)resources.GetObject("button3.Image");
-            button3.ImageAlign = ContentAlignment.MiddleLeft;
-            button3.Location = new Point(0, 285);
-            button3.Margin = new Padding(0);
-            button3.Name = "button3";
-            button3.Padding = new Padding(25, 0, 0, 0);
-            button3.Size = new Size(241, 95);
-            button3.TabIndex = 12;
-            button3.TabStop = false;
-            button3.Text = "Accounts Manager";
-            button3.UseMnemonic = false;
-            button3.UseVisualStyleBackColor = false;
+            accountsMgr_btn.BackColor = Color.FromArgb(18, 18, 18);
+            accountsMgr_btn.BackgroundImageLayout = ImageLayout.Center;
+            accountsMgr_btn.Cursor = Cursors.Hand;
+            accountsMgr_btn.FlatStyle = FlatStyle.Popup;
+            accountsMgr_btn.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            accountsMgr_btn.ForeColor = Color.White;
+            accountsMgr_btn.Image = (Image)resources.GetObject("accountsMgr_btn.Image");
+            accountsMgr_btn.ImageAlign = ContentAlignment.MiddleLeft;
+            accountsMgr_btn.Location = new Point(0, 216);
+            accountsMgr_btn.Margin = new Padding(0);
+            accountsMgr_btn.Name = "accountsMgr_btn";
+            accountsMgr_btn.Padding = new Padding(28, 0, 0, 0);
+            accountsMgr_btn.Size = new Size(200, 72);
+            accountsMgr_btn.TabIndex = 12;
+            accountsMgr_btn.TabStop = false;
+            accountsMgr_btn.Text = "Accounts Manager";
+            accountsMgr_btn.UseMnemonic = false;
+            accountsMgr_btn.UseVisualStyleBackColor = false;
             // 
-            // label4
+            // signOut_btn
             // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 26.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label4.ForeColor = Color.Black;
-            label4.Location = new Point(481, 108);
-            label4.Name = "label4";
-            label4.Size = new Size(274, 47);
-            label4.TabIndex = 9;
-            label4.Text = "SYSTEM UPTIME";
+            signOut_btn.BackColor = Color.FromArgb(18, 18, 18);
+            signOut_btn.BackgroundImageLayout = ImageLayout.Center;
+            signOut_btn.Cursor = Cursors.Hand;
+            signOut_btn.FlatStyle = FlatStyle.Popup;
+            signOut_btn.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            signOut_btn.ForeColor = Color.White;
+            signOut_btn.Image = (Image)resources.GetObject("signOut_btn.Image");
+            signOut_btn.ImageAlign = ContentAlignment.MiddleLeft;
+            signOut_btn.Location = new Point(0, 288);
+            signOut_btn.Margin = new Padding(0);
+            signOut_btn.Name = "signOut_btn";
+            signOut_btn.Padding = new Padding(28, 0, 0, 0);
+            signOut_btn.Size = new Size(200, 72);
+            signOut_btn.TabIndex = 13;
+            signOut_btn.TabStop = false;
+            signOut_btn.Text = "Sign Out";
+            signOut_btn.UseMnemonic = false;
+            signOut_btn.UseVisualStyleBackColor = false;
+            signOut_btn.Click += signOut_btn_Click;
+            // 
+            // systemTimeText
+            // 
+            systemTimeText.AutoSize = true;
+            systemTimeText.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            systemTimeText.ForeColor = Color.White;
+            systemTimeText.Location = new Point(742, 691);
+            systemTimeText.Margin = new Padding(4, 0, 4, 0);
+            systemTimeText.Name = "systemTimeText";
+            systemTimeText.Size = new Size(147, 31);
+            systemTimeText.TabIndex = 9;
+            systemTimeText.Text = "System Time:";
+            systemTimeText.Click += label4_Click;
             // 
             // timer1
             // 
@@ -218,56 +273,172 @@
             // Timer
             // 
             Timer.AutoSize = true;
-            Timer.Font = new Font("Segoe UI", 26.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            Timer.ForeColor = Color.Black;
-            Timer.Location = new Point(574, 155);
+            Timer.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Timer.ForeColor = Color.White;
+            Timer.Location = new Point(897, 691);
+            Timer.Margin = new Padding(4, 0, 4, 0);
             Timer.Name = "Timer";
-            Timer.Size = new Size(104, 47);
+            Timer.Size = new Size(67, 31);
             Timer.TabIndex = 10;
             Timer.Text = "00:00";
             Timer.Click += timer1_Tick;
             // 
-            // button4
+            // label1
             // 
-            button4.BackColor = Color.FromArgb(0, 0, 64);
-            button4.BackgroundImageLayout = ImageLayout.Center;
-            button4.FlatStyle = FlatStyle.Popup;
-            button4.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button4.ForeColor = Color.White;
-            button4.Image = (Image)resources.GetObject("button4.Image");
-            button4.ImageAlign = ContentAlignment.MiddleLeft;
-            button4.Location = new Point(0, 380);
-            button4.Margin = new Padding(0);
-            button4.Name = "button4";
-            button4.Padding = new Padding(25, 0, 0, 0);
-            button4.Size = new Size(241, 95);
-            button4.TabIndex = 13;
-            button4.TabStop = false;
-            button4.Text = "Sign Out";
-            button4.UseMnemonic = false;
-            button4.UseVisualStyleBackColor = false;
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.White;
+            label1.Location = new Point(677, 722);
+            label1.Margin = new Padding(4, 0, 4, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(212, 31);
+            label1.TabIndex = 11;
+            label1.Text = "Account Expiration:";
+            // 
+            // expirationDate
+            // 
+            expirationDate.AutoSize = true;
+            expirationDate.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            expirationDate.ForeColor = Color.White;
+            expirationDate.Location = new Point(897, 722);
+            expirationDate.Margin = new Padding(4, 0, 4, 0);
+            expirationDate.Name = "expirationDate";
+            expirationDate.Size = new Size(163, 31);
+            expirationDate.TabIndex = 12;
+            expirationDate.Text = "2026/1/24 3:00";
+            // 
+            // panel2
+            // 
+            panel2.BackColor = Color.FromArgb(14, 77, 146);
+            panel2.Controls.Add(activityLogHeader);
+            panel2.Controls.Add(activityLogs);
+            panel2.Location = new Point(218, 103);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(280, 516);
+            panel2.TabIndex = 13;
+            // 
+            // activityLogHeader
+            // 
+            activityLogHeader.AutoSize = true;
+            activityLogHeader.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            activityLogHeader.ForeColor = Color.White;
+            activityLogHeader.Location = new Point(12, 19);
+            activityLogHeader.Margin = new Padding(4, 0, 4, 0);
+            activityLogHeader.Name = "activityLogHeader";
+            activityLogHeader.Size = new Size(165, 31);
+            activityLogHeader.TabIndex = 12;
+            activityLogHeader.Text = "Access Activity";
+            // 
+            // activityLogs
+            // 
+            activityLogs.Location = new Point(12, 53);
+            activityLogs.Name = "activityLogs";
+            activityLogs.ReadOnly = true;
+            activityLogs.ScrollBars = RichTextBoxScrollBars.ForcedHorizontal;
+            activityLogs.Size = new Size(254, 453);
+            activityLogs.TabIndex = 0;
+            activityLogs.Text = " ";
+            // 
+            // panel3
+            // 
+            panel3.BackColor = Color.FromArgb(14, 77, 146);
+            panel3.Controls.Add(encryptActivityheader);
+            panel3.Controls.Add(encryptionLogs);
+            panel3.Location = new Point(521, 103);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(280, 516);
+            panel3.TabIndex = 14;
+            // 
+            // encryptActivityheader
+            // 
+            encryptActivityheader.AutoSize = true;
+            encryptActivityheader.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            encryptActivityheader.ForeColor = Color.White;
+            encryptActivityheader.Location = new Point(12, 19);
+            encryptActivityheader.Margin = new Padding(4, 0, 4, 0);
+            encryptActivityheader.Name = "encryptActivityheader";
+            encryptActivityheader.Size = new Size(205, 31);
+            encryptActivityheader.TabIndex = 12;
+            encryptActivityheader.Text = "Encryption Activity";
+            // 
+            // encryptionLogs
+            // 
+            encryptionLogs.Location = new Point(12, 53);
+            encryptionLogs.Name = "encryptionLogs";
+            encryptionLogs.ReadOnly = true;
+            encryptionLogs.ScrollBars = RichTextBoxScrollBars.ForcedHorizontal;
+            encryptionLogs.Size = new Size(254, 453);
+            encryptionLogs.TabIndex = 0;
+            encryptionLogs.Text = " ";
+            // 
+            // panel4
+            // 
+            panel4.BackColor = Color.FromArgb(14, 77, 146);
+            panel4.Controls.Add(processActivityHeader);
+            panel4.Controls.Add(processLogs);
+            panel4.Location = new Point(825, 103);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(280, 516);
+            panel4.TabIndex = 14;
+            // 
+            // processActivityHeader
+            // 
+            processActivityHeader.AutoSize = true;
+            processActivityHeader.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            processActivityHeader.ForeColor = Color.White;
+            processActivityHeader.Location = new Point(12, 19);
+            processActivityHeader.Margin = new Padding(4, 0, 4, 0);
+            processActivityHeader.Name = "processActivityHeader";
+            processActivityHeader.Size = new Size(173, 31);
+            processActivityHeader.TabIndex = 12;
+            processActivityHeader.Text = "Process Activity";
+            // 
+            // processLogs
+            // 
+            processLogs.Location = new Point(12, 53);
+            processLogs.Name = "processLogs";
+            processLogs.ReadOnly = true;
+            processLogs.ScrollBars = RichTextBoxScrollBars.ForcedHorizontal;
+            processLogs.Size = new Size(254, 453);
+            processLogs.TabIndex = 0;
+            processLogs.Text = " ";
             // 
             // WinLock
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.AliceBlue;
+            BackColor = Color.FromArgb(24, 24, 24);
             BackgroundImageLayout = ImageLayout.Center;
-            ClientSize = new Size(1000, 573);
+            ClientSize = new Size(1140, 765);
+            Controls.Add(panel4);
+            Controls.Add(panel3);
+            Controls.Add(panel2);
+            Controls.Add(expirationDate);
+            Controls.Add(label1);
             Controls.Add(Timer);
-            Controls.Add(label4);
-            Controls.Add(flowLayoutPanel1);
+            Controls.Add(systemTimeText);
+            Controls.Add(sidebar);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
-            Margin = new Padding(3, 2, 3, 2);
+            Margin = new Padding(4, 3, 4, 3);
+            MaximizeBox = false;
             MdiChildrenMinimizedAnchorBottom = false;
+            MinimizeBox = false;
             Name = "WinLock";
             Text = "WinLOCK";
+            Load += WinLock_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            flowLayoutPanel1.ResumeLayout(false);
+            sidebar.ResumeLayout(false);
+            sidebar.PerformLayout();
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
+            panel3.ResumeLayout(false);
+            panel3.PerformLayout();
+            panel4.ResumeLayout(false);
+            panel4.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -276,17 +447,28 @@
         private Label label3;
         private Panel panel1;
         private PictureBox pictureBox2;
-        private FlowLayoutPanel flowLayoutPanel1;
+        private FlowLayoutPanel sidebar;
         private Button decryptButton;
-        private Label label2;
-        private Label label1;
+        private Label userRole;
+        private Label username;
         private PictureBox pictureBox1;
-        private Label label4;
+        private Label systemTimeText;
         private Button button1;
-        private Button button2;
-        private Button button3;
+        private Button serviceMgr_btn;
+        public Button accountsMgr_btn;
         private System.Windows.Forms.Timer timer1;
         private Label Timer;
-        private Button button4;
+        private Button signOut_btn;
+        private Label label1;
+        private Label expirationDate;
+        private Panel panel2;
+        private RichTextBox activityLogs;
+        private Label activityLogHeader;
+        private Panel panel3;
+        private Label encryptActivityheader;
+        private RichTextBox encryptionLogs;
+        private Panel panel4;
+        private Label processActivityHeader;
+        private RichTextBox processLogs;
     }
 }

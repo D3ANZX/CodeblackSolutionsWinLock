@@ -6,12 +6,23 @@ namespace com.codeBlack.winLock
         ///  The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        public static void Main()
         {
             // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
+            // see https://aka.ms/applicationconfig1uration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new WinLock());
+            using (LoginForm newSession = new LoginForm())
+            {
+                foreach (var process in System.Diagnostics.Process.GetProcessesByName("explorer"))
+                {
+                    newSession.KillExplorerAndKeepItDead();
+                }
+                if (newSession.ShowDialog() == DialogResult.OK)
+                {
+                    Application.Run(new WinLock(newSession.username, newSession.role, newSession.authFilePath));
+
+                }
+            }
         }
     }
 }
