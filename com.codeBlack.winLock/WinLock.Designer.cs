@@ -30,8 +30,9 @@
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WinLock));
-            label3 = new Label();
+            WinLockLabel = new Label();
             panel1 = new Panel();
+            logo = new PictureBox();
             username = new Label();
             userRole = new Label();
             pictureBox1 = new PictureBox();
@@ -41,6 +42,9 @@
             serviceMgr_btn = new Button();
             accountsMgr_btn = new Button();
             signOut_btn = new Button();
+            panel5 = new Panel();
+            label3 = new Label();
+            label2 = new Label();
             systemTimeText = new Label();
             timer1 = new System.Windows.Forms.Timer(components);
             Timer = new Label();
@@ -56,32 +60,35 @@
             processActivityHeader = new Label();
             processLogs = new RichTextBox();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)logo).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             sidebar.SuspendLayout();
+            panel5.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
             panel4.SuspendLayout();
             SuspendLayout();
             // 
-            // label3
+            // WinLockLabel
             // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 26.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.ForeColor = Color.White;
-            label3.Location = new Point(13, 11);
-            label3.Margin = new Padding(4, 0, 4, 0);
-            label3.Name = "label3";
-            label3.Size = new Size(207, 60);
-            label3.TabIndex = 6;
-            label3.Text = "WinLOCK";
+            WinLockLabel.AutoSize = true;
+            WinLockLabel.Font = new Font("Segoe UI", 26.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            WinLockLabel.ForeColor = Color.White;
+            WinLockLabel.Location = new Point(79, 11);
+            WinLockLabel.Margin = new Padding(4, 0, 4, 0);
+            WinLockLabel.Name = "WinLockLabel";
+            WinLockLabel.Size = new Size(207, 60);
+            WinLockLabel.TabIndex = 6;
+            WinLockLabel.Text = "WinLOCK";
             // 
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(14, 77, 146);
+            panel1.Controls.Add(logo);
             panel1.Controls.Add(username);
             panel1.Controls.Add(userRole);
             panel1.Controls.Add(pictureBox1);
-            panel1.Controls.Add(label3);
+            panel1.Controls.Add(WinLockLabel);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Margin = new Padding(4);
@@ -89,6 +96,16 @@
             panel1.Size = new Size(1140, 80);
             panel1.TabIndex = 7;
             panel1.Paint += panel1_Paint;
+            // 
+            // logo
+            // 
+            logo.BackgroundImage = (Image)resources.GetObject("logo.BackgroundImage");
+            logo.BackgroundImageLayout = ImageLayout.Stretch;
+            logo.Location = new Point(12, 11);
+            logo.Name = "logo";
+            logo.Size = new Size(60, 60);
+            logo.TabIndex = 12;
+            logo.TabStop = false;
             // 
             // username
             // 
@@ -138,6 +155,7 @@
             sidebar.Controls.Add(serviceMgr_btn);
             sidebar.Controls.Add(accountsMgr_btn);
             sidebar.Controls.Add(signOut_btn);
+            sidebar.Controls.Add(panel5);
             sidebar.Location = new Point(0, 80);
             sidebar.Margin = new Padding(0);
             sidebar.Name = "sidebar";
@@ -150,7 +168,8 @@
             decryptButton.BackColor = Color.FromArgb(18, 18, 18);
             decryptButton.BackgroundImageLayout = ImageLayout.Center;
             decryptButton.Cursor = Cursors.Hand;
-            decryptButton.FlatStyle = FlatStyle.Popup;
+            decryptButton.FlatAppearance.BorderSize = 0;
+            decryptButton.FlatStyle = FlatStyle.Flat;
             decryptButton.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             decryptButton.ForeColor = Color.White;
             decryptButton.Image = (Image)resources.GetObject("decryptButton.Image");
@@ -172,7 +191,8 @@
             button1.BackColor = Color.FromArgb(18, 18, 18);
             button1.BackgroundImageLayout = ImageLayout.Center;
             button1.Cursor = Cursors.Hand;
-            button1.FlatStyle = FlatStyle.Popup;
+            button1.FlatAppearance.BorderSize = 0;
+            button1.FlatStyle = FlatStyle.Flat;
             button1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             button1.ForeColor = Color.WhiteSmoke;
             button1.Image = (Image)resources.GetObject("button1.Image");
@@ -193,7 +213,8 @@
             serviceMgr_btn.BackColor = Color.FromArgb(18, 18, 18);
             serviceMgr_btn.BackgroundImageLayout = ImageLayout.Center;
             serviceMgr_btn.Cursor = Cursors.Hand;
-            serviceMgr_btn.FlatStyle = FlatStyle.Popup;
+            serviceMgr_btn.FlatAppearance.BorderSize = 0;
+            serviceMgr_btn.FlatStyle = FlatStyle.Flat;
             serviceMgr_btn.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             serviceMgr_btn.ForeColor = Color.White;
             serviceMgr_btn.Image = (Image)resources.GetObject("serviceMgr_btn.Image");
@@ -213,7 +234,8 @@
             accountsMgr_btn.BackColor = Color.FromArgb(18, 18, 18);
             accountsMgr_btn.BackgroundImageLayout = ImageLayout.Center;
             accountsMgr_btn.Cursor = Cursors.Hand;
-            accountsMgr_btn.FlatStyle = FlatStyle.Popup;
+            accountsMgr_btn.FlatAppearance.BorderSize = 0;
+            accountsMgr_btn.FlatStyle = FlatStyle.Flat;
             accountsMgr_btn.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             accountsMgr_btn.ForeColor = Color.White;
             accountsMgr_btn.Image = (Image)resources.GetObject("accountsMgr_btn.Image");
@@ -234,7 +256,8 @@
             signOut_btn.BackColor = Color.FromArgb(18, 18, 18);
             signOut_btn.BackgroundImageLayout = ImageLayout.Center;
             signOut_btn.Cursor = Cursors.Hand;
-            signOut_btn.FlatStyle = FlatStyle.Popup;
+            signOut_btn.FlatAppearance.BorderSize = 0;
+            signOut_btn.FlatStyle = FlatStyle.Flat;
             signOut_btn.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             signOut_btn.ForeColor = Color.White;
             signOut_btn.Image = (Image)resources.GetObject("signOut_btn.Image");
@@ -250,6 +273,39 @@
             signOut_btn.UseMnemonic = false;
             signOut_btn.UseVisualStyleBackColor = false;
             signOut_btn.Click += signOut_btn_Click;
+            // 
+            // panel5
+            // 
+            panel5.Controls.Add(label3);
+            panel5.Controls.Add(label2);
+            panel5.Location = new Point(3, 363);
+            panel5.Name = "panel5";
+            panel5.Size = new Size(197, 327);
+            panel5.TabIndex = 14;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label3.ForeColor = Color.White;
+            label3.Location = new Point(9, 296);
+            label3.Margin = new Padding(4, 0, 4, 0);
+            label3.Name = "label3";
+            label3.Size = new Size(62, 17);
+            label3.TabIndex = 14;
+            label3.Text = "DeanDEV";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label2.ForeColor = Color.White;
+            label2.Location = new Point(9, 279);
+            label2.Margin = new Padding(4, 0, 4, 0);
+            label2.Name = "label2";
+            label2.Size = new Size(182, 17);
+            label2.TabIndex = 13;
+            label2.Text = "Copyright CodeBlackSolutions";
             // 
             // systemTimeText
             // 
@@ -331,13 +387,16 @@
             // 
             // activityLogs
             // 
+            activityLogs.BackColor = Color.FromArgb(20, 20, 20);
+            activityLogs.Font = new Font("SimSun-ExtG", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            activityLogs.ForeColor = Color.Teal;
             activityLogs.Location = new Point(12, 53);
             activityLogs.Name = "activityLogs";
             activityLogs.ReadOnly = true;
             activityLogs.ScrollBars = RichTextBoxScrollBars.ForcedHorizontal;
             activityLogs.Size = new Size(254, 453);
             activityLogs.TabIndex = 0;
-            activityLogs.Text = " ";
+            activityLogs.Text = " The quick brown fox jumped over a lazy dog";
             // 
             // panel3
             // 
@@ -360,9 +419,13 @@
             encryptActivityheader.Size = new Size(205, 31);
             encryptActivityheader.TabIndex = 12;
             encryptActivityheader.Text = "Encryption Activity";
+            encryptActivityheader.Click += encryptActivityheader_Click;
             // 
             // encryptionLogs
             // 
+            encryptionLogs.BackColor = Color.FromArgb(20, 20, 20);
+            encryptionLogs.Font = new Font("SimSun-ExtG", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            encryptionLogs.ForeColor = Color.Teal;
             encryptionLogs.Location = new Point(12, 53);
             encryptionLogs.Name = "encryptionLogs";
             encryptionLogs.ReadOnly = true;
@@ -395,6 +458,9 @@
             // 
             // processLogs
             // 
+            processLogs.BackColor = Color.FromArgb(20, 20, 20);
+            processLogs.Font = new Font("SimSun-ExtG", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            processLogs.ForeColor = Color.Teal;
             processLogs.Location = new Point(12, 53);
             processLogs.Name = "processLogs";
             processLogs.ReadOnly = true;
@@ -430,9 +496,12 @@
             Load += WinLock_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)logo).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             sidebar.ResumeLayout(false);
             sidebar.PerformLayout();
+            panel5.ResumeLayout(false);
+            panel5.PerformLayout();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             panel3.ResumeLayout(false);
@@ -444,9 +513,9 @@
         }
 
         #endregion
-        private Label label3;
+        private Label WinLockLabel;
         private Panel panel1;
-        private PictureBox pictureBox2;
+        private PictureBox logo;
         private FlowLayoutPanel sidebar;
         private Button decryptButton;
         private Label userRole;
@@ -470,5 +539,8 @@
         private Panel panel4;
         private Label processActivityHeader;
         private RichTextBox processLogs;
+        private Panel panel5;
+        private Label label3;
+        private Label label2;
     }
 }

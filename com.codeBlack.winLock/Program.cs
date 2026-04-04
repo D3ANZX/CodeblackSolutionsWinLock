@@ -15,7 +15,7 @@ namespace com.codeBlack.winLock
             {
                 foreach (var process in System.Diagnostics.Process.GetProcessesByName("explorer"))
                 {
-                    newSession.KillExplorerAndKeepItDead();
+                    //newSession.KillExplorerAndKeepItDead();
                 }
                 if (newSession.ShowDialog() == DialogResult.OK)
                 {

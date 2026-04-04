@@ -1,5 +1,6 @@
 using System.Security.Cryptography;
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Text;
 using com.codeBlack.winLock.Controller;
@@ -11,8 +12,10 @@ namespace com.codeBlack.winLock
     public partial class WinLock : Form
     {
         const string SrcFolder = @"c:\Desktop\";
-        const string cryptFolder = @"c:\WinLockFiles\cryptLogs";
-        const string encryptLogs = @"c:\WinLockFiles\cryptLogs\encryptLogs.txt";
+        const string logsFolder = @"c:\WinLockFiles\Logs\";
+        string cryptLogs = Path.Combine(logsFolder, "cryptLogs.txt");
+        string actLogs = Path.Combine(logsFolder, "activityLogs.txt");
+        string authLogs = Path.Combine(logsFolder, "authLogs.txt");
         const string salt = "winLock";
         private string activity;
         const int iterations = 1000;
@@ -30,18 +33,22 @@ namespace com.codeBlack.winLock
             {
                 accountsMgr_btn.Enabled = false;
             }
-            if (!Directory.Exists(cryptFolder))
-            {
-                Directory.CreateDirectory(cryptFolder);
-                using (FileStream encryptedFile = new FileStream(encryptLogs, FileMode.Create)) ;
-            }
 
-            using (StreamReader readAuthActivity = new StreamReader(authFilePath))
+            if (!Directory.Exists(logsFolder))
             {
-                activityLogs.Text = readAuthActivity.ReadToEnd();
-            }
+                Directory.CreateDirectory(logsFolder);
+                using (FileStream cryptLogFile = new FileStream(cryptLogs, FileMode.Create)) ;
+                using (FileStream authLogFile = new FileStream(authLogs, FileMode.Create)) ;
+                using (FileStream actLogFile = new FileStream(actLogs, FileMode.Create)) ;
 
+            }
+            logProcessActivity();
+            readAuthActivity();
             readCryptActivity();
+            readActivity();
+
+
+
 
 
         }
@@ -63,6 +70,7 @@ namespace com.codeBlack.winLock
                         logCryptActivity();
                         readCryptActivity();
                     }
+                    
                 }
                 else
                 {
@@ -97,21 +105,56 @@ namespace com.codeBlack.winLock
             }
         }
 
+        
         private void logCryptActivity()
         {
-            using (StreamWriter encryptWriter = new StreamWriter(encryptLogs, true))
+            using (StreamWriter encryptWriter = new StreamWriter(cryptLogs, true))
             {
                 encryptWriter.WriteLine($"{activity}: {username.Text} : {userRole.Text} at {DateTime.Now}");
             }
         }
+        public void logProcessActivity()
+        {
+            Process[] processes = Process.GetProcesses();
+            foreach (Process proc in processes)
+            {
+                using(StreamWriter activityWriter = new StreamWriter(actLogs, true))
+                {
+                    activityWriter.WriteLine($"[{userRole.Text}] {username.Text} opened {proc.ProcessName}");
+                }
+            }
+
+        }
+
+
+        public void readAuthActivity()
+        {
+            using (StreamReader readAuthActivity = new StreamReader(authLogs))
+            {
+                activityLogs.Text = readAuthActivity.ReadToEnd();
+            }
+        }
+
 
         public void readCryptActivity()
         {
-            using (StreamReader readCryptActivity = new StreamReader(encryptLogs))
+            using (StreamReader readCryptActivity = new StreamReader(cryptLogs))
             {
                 encryptionLogs.Text = readCryptActivity.ReadToEnd();
             }
         }
+
+        public void readActivity()
+        {
+            using (StreamReader readActivity = new StreamReader(actLogs))
+            {
+                processLogs.Text = readActivity.ReadToEnd();
+            }
+        }
+
+        
+
+        
 
 
         private void label2_Click(object sender, EventArgs e)
@@ -149,6 +192,11 @@ namespace com.codeBlack.winLock
         private void label4_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void encryptActivityheader_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }
