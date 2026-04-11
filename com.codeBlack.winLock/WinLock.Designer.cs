@@ -37,9 +37,9 @@
             userRole = new Label();
             pictureBox1 = new PictureBox();
             sidebar = new FlowLayoutPanel();
+            serviceMgr_btn = new Button();
             decryptButton = new Button();
             button1 = new Button();
-            serviceMgr_btn = new Button();
             accountsMgr_btn = new Button();
             signOut_btn = new Button();
             panel5 = new Panel();
@@ -47,18 +47,19 @@
             label2 = new Label();
             systemTimeText = new Label();
             timer1 = new System.Windows.Forms.Timer(components);
-            Timer = new Label();
+            systime = new Label();
             label1 = new Label();
             expirationDate = new Label();
             panel2 = new Panel();
             activityLogHeader = new Label();
-            activityLogs = new RichTextBox();
+            authLogsContainer = new RichTextBox();
             panel3 = new Panel();
             encryptActivityheader = new Label();
-            encryptionLogs = new RichTextBox();
+            encryptionLogsContainer = new RichTextBox();
             panel4 = new Panel();
             processActivityHeader = new Label();
-            processLogs = new RichTextBox();
+            processLogsContainer = new RichTextBox();
+            updateProcess = new System.Windows.Forms.Timer(components);
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)logo).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -162,6 +163,27 @@
             sidebar.Size = new Size(200, 690);
             sidebar.TabIndex = 8;
             // 
+            // serviceMgr_btn
+            // 
+            serviceMgr_btn.BackColor = Color.FromArgb(18, 18, 18);
+            serviceMgr_btn.BackgroundImageLayout = ImageLayout.Center;
+            serviceMgr_btn.Cursor = Cursors.Hand;
+            serviceMgr_btn.FlatAppearance.BorderSize = 0;
+            serviceMgr_btn.FlatStyle = FlatStyle.Flat;
+            serviceMgr_btn.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            serviceMgr_btn.ForeColor = Color.White;
+            serviceMgr_btn.Image = (Image)resources.GetObject("serviceMgr_btn.Image");
+            serviceMgr_btn.ImageAlign = ContentAlignment.MiddleLeft;
+            serviceMgr_btn.Location = new Point(0, 144);
+            serviceMgr_btn.Margin = new Padding(0);
+            serviceMgr_btn.Name = "serviceMgr_btn";
+            serviceMgr_btn.Padding = new Padding(28, 0, 0, 0);
+            serviceMgr_btn.Size = new Size(200, 72);
+            serviceMgr_btn.TabIndex = 11;
+            serviceMgr_btn.Text = "Services Manager";
+            serviceMgr_btn.UseMnemonic = false;
+            serviceMgr_btn.UseVisualStyleBackColor = false;
+            // 
             // decryptButton
             // 
             decryptButton.AutoSize = true;
@@ -207,27 +229,6 @@
             button1.UseMnemonic = false;
             button1.UseVisualStyleBackColor = false;
             button1.Click += encryptButton_Click;
-            // 
-            // serviceMgr_btn
-            // 
-            serviceMgr_btn.BackColor = Color.FromArgb(18, 18, 18);
-            serviceMgr_btn.BackgroundImageLayout = ImageLayout.Center;
-            serviceMgr_btn.Cursor = Cursors.Hand;
-            serviceMgr_btn.FlatAppearance.BorderSize = 0;
-            serviceMgr_btn.FlatStyle = FlatStyle.Flat;
-            serviceMgr_btn.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            serviceMgr_btn.ForeColor = Color.White;
-            serviceMgr_btn.Image = (Image)resources.GetObject("serviceMgr_btn.Image");
-            serviceMgr_btn.ImageAlign = ContentAlignment.MiddleLeft;
-            serviceMgr_btn.Location = new Point(0, 144);
-            serviceMgr_btn.Margin = new Padding(0);
-            serviceMgr_btn.Name = "serviceMgr_btn";
-            serviceMgr_btn.Padding = new Padding(28, 0, 0, 0);
-            serviceMgr_btn.Size = new Size(200, 72);
-            serviceMgr_btn.TabIndex = 11;
-            serviceMgr_btn.Text = "Services Manager";
-            serviceMgr_btn.UseMnemonic = false;
-            serviceMgr_btn.UseVisualStyleBackColor = false;
             // 
             // accountsMgr_btn
             // 
@@ -326,18 +327,18 @@
             timer1.Interval = 1000;
             timer1.Tick += timer1_Tick;
             // 
-            // Timer
+            // systime
             // 
-            Timer.AutoSize = true;
-            Timer.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            Timer.ForeColor = Color.White;
-            Timer.Location = new Point(897, 691);
-            Timer.Margin = new Padding(4, 0, 4, 0);
-            Timer.Name = "Timer";
-            Timer.Size = new Size(67, 31);
-            Timer.TabIndex = 10;
-            Timer.Text = "00:00";
-            Timer.Click += timer1_Tick;
+            systime.AutoSize = true;
+            systime.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            systime.ForeColor = Color.White;
+            systime.Location = new Point(897, 691);
+            systime.Margin = new Padding(4, 0, 4, 0);
+            systime.Name = "systime";
+            systime.Size = new Size(67, 31);
+            systime.TabIndex = 10;
+            systime.Text = "00:00";
+            systime.Click += timer1_Tick;
             // 
             // label1
             // 
@@ -367,7 +368,7 @@
             // 
             panel2.BackColor = Color.FromArgb(14, 77, 146);
             panel2.Controls.Add(activityLogHeader);
-            panel2.Controls.Add(activityLogs);
+            panel2.Controls.Add(authLogsContainer);
             panel2.Location = new Point(218, 103);
             panel2.Name = "panel2";
             panel2.Size = new Size(280, 516);
@@ -385,24 +386,24 @@
             activityLogHeader.TabIndex = 12;
             activityLogHeader.Text = "Access Activity";
             // 
-            // activityLogs
+            // authLogsContainer
             // 
-            activityLogs.BackColor = Color.FromArgb(20, 20, 20);
-            activityLogs.Font = new Font("SimSun-ExtG", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            activityLogs.ForeColor = Color.Teal;
-            activityLogs.Location = new Point(12, 53);
-            activityLogs.Name = "activityLogs";
-            activityLogs.ReadOnly = true;
-            activityLogs.ScrollBars = RichTextBoxScrollBars.ForcedHorizontal;
-            activityLogs.Size = new Size(254, 453);
-            activityLogs.TabIndex = 0;
-            activityLogs.Text = " The quick brown fox jumped over a lazy dog";
+            authLogsContainer.BackColor = Color.FromArgb(20, 20, 20);
+            authLogsContainer.Font = new Font("SimSun-ExtG", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            authLogsContainer.ForeColor = Color.Teal;
+            authLogsContainer.Location = new Point(11, 53);
+            authLogsContainer.Name = "authLogsContainer";
+            authLogsContainer.ReadOnly = true;
+            authLogsContainer.ScrollBars = RichTextBoxScrollBars.ForcedHorizontal;
+            authLogsContainer.Size = new Size(254, 453);
+            authLogsContainer.TabIndex = 0;
+            authLogsContainer.Text = "";
             // 
             // panel3
             // 
             panel3.BackColor = Color.FromArgb(14, 77, 146);
             panel3.Controls.Add(encryptActivityheader);
-            panel3.Controls.Add(encryptionLogs);
+            panel3.Controls.Add(encryptionLogsContainer);
             panel3.Location = new Point(521, 103);
             panel3.Name = "panel3";
             panel3.Size = new Size(280, 516);
@@ -421,24 +422,24 @@
             encryptActivityheader.Text = "Encryption Activity";
             encryptActivityheader.Click += encryptActivityheader_Click;
             // 
-            // encryptionLogs
+            // encryptionLogsContainer
             // 
-            encryptionLogs.BackColor = Color.FromArgb(20, 20, 20);
-            encryptionLogs.Font = new Font("SimSun-ExtG", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            encryptionLogs.ForeColor = Color.Teal;
-            encryptionLogs.Location = new Point(12, 53);
-            encryptionLogs.Name = "encryptionLogs";
-            encryptionLogs.ReadOnly = true;
-            encryptionLogs.ScrollBars = RichTextBoxScrollBars.ForcedHorizontal;
-            encryptionLogs.Size = new Size(254, 453);
-            encryptionLogs.TabIndex = 0;
-            encryptionLogs.Text = " ";
+            encryptionLogsContainer.BackColor = Color.FromArgb(20, 20, 20);
+            encryptionLogsContainer.Font = new Font("SimSun-ExtG", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            encryptionLogsContainer.ForeColor = Color.Teal;
+            encryptionLogsContainer.Location = new Point(12, 53);
+            encryptionLogsContainer.Name = "encryptionLogsContainer";
+            encryptionLogsContainer.ReadOnly = true;
+            encryptionLogsContainer.ScrollBars = RichTextBoxScrollBars.ForcedHorizontal;
+            encryptionLogsContainer.Size = new Size(254, 453);
+            encryptionLogsContainer.TabIndex = 0;
+            encryptionLogsContainer.Text = " ";
             // 
             // panel4
             // 
             panel4.BackColor = Color.FromArgb(14, 77, 146);
             panel4.Controls.Add(processActivityHeader);
-            panel4.Controls.Add(processLogs);
+            panel4.Controls.Add(processLogsContainer);
             panel4.Location = new Point(825, 103);
             panel4.Name = "panel4";
             panel4.Size = new Size(280, 516);
@@ -456,18 +457,23 @@
             processActivityHeader.TabIndex = 12;
             processActivityHeader.Text = "Process Activity";
             // 
-            // processLogs
+            // processLogsContainer
             // 
-            processLogs.BackColor = Color.FromArgb(20, 20, 20);
-            processLogs.Font = new Font("SimSun-ExtG", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            processLogs.ForeColor = Color.Teal;
-            processLogs.Location = new Point(12, 53);
-            processLogs.Name = "processLogs";
-            processLogs.ReadOnly = true;
-            processLogs.ScrollBars = RichTextBoxScrollBars.ForcedHorizontal;
-            processLogs.Size = new Size(254, 453);
-            processLogs.TabIndex = 0;
-            processLogs.Text = " ";
+            processLogsContainer.BackColor = Color.FromArgb(20, 20, 20);
+            processLogsContainer.Font = new Font("SimSun-ExtG", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            processLogsContainer.ForeColor = Color.Teal;
+            processLogsContainer.Location = new Point(12, 53);
+            processLogsContainer.Name = "processLogsContainer";
+            processLogsContainer.ReadOnly = true;
+            processLogsContainer.ScrollBars = RichTextBoxScrollBars.ForcedHorizontal;
+            processLogsContainer.Size = new Size(254, 453);
+            processLogsContainer.TabIndex = 0;
+            processLogsContainer.Text = " ";
+            // 
+            // updateProcess
+            // 
+            updateProcess.Interval = 5000;
+            updateProcess.Tick += updateProcess_Tick;
             // 
             // WinLock
             // 
@@ -481,7 +487,7 @@
             Controls.Add(panel2);
             Controls.Add(expirationDate);
             Controls.Add(label1);
-            Controls.Add(Timer);
+            Controls.Add(systime);
             Controls.Add(systemTimeText);
             Controls.Add(sidebar);
             Controls.Add(panel1);
@@ -526,21 +532,22 @@
         private Button serviceMgr_btn;
         public Button accountsMgr_btn;
         private System.Windows.Forms.Timer timer1;
-        private Label Timer;
+        private Label systime;
         private Button signOut_btn;
         private Label label1;
         private Label expirationDate;
         private Panel panel2;
-        private RichTextBox activityLogs;
+        private RichTextBox authLogsContainer;
         private Label activityLogHeader;
         private Panel panel3;
         private Label encryptActivityheader;
-        private RichTextBox encryptionLogs;
+        private RichTextBox encryptionLogsContainer;
         private Panel panel4;
         private Label processActivityHeader;
-        private RichTextBox processLogs;
+        private RichTextBox processLogsContainer;
         private Panel panel5;
         private Label label3;
         private Label label2;
+        private System.Windows.Forms.Timer updateProcess;
     }
 }

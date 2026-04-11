@@ -11,11 +11,14 @@ namespace com.codeBlack.winLock
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfig1uration.
             ApplicationConfiguration.Initialize();
+
+
+            
             using (LoginForm newSession = new LoginForm())
             {
                 foreach (var process in System.Diagnostics.Process.GetProcessesByName("explorer"))
                 {
-                    //newSession.KillExplorerAndKeepItDead();
+                    newSession.KillExplorerAndKeepItDead();
                 }
                 if (newSession.ShowDialog() == DialogResult.OK)
                 {
@@ -23,6 +26,7 @@ namespace com.codeBlack.winLock
 
                 }
             }
+            
         }
     }
 }

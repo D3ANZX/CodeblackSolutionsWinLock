@@ -33,6 +33,11 @@
             splash_timer = new System.Windows.Forms.Timer(components);
             SuspendLayout();
             // 
+            // splash_timer
+            // 
+            splash_timer.Enabled = true;
+            splash_timer.Interval = 1000;
+            // 
             // spash_screen
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);

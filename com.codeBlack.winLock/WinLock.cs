@@ -13,9 +13,11 @@ namespace com.codeBlack.winLock
     {
         const string SrcFolder = @"c:\Desktop\";
         const string logsFolder = @"c:\WinLockFiles\Logs\";
-        string cryptLogs = Path.Combine(logsFolder, "cryptLogs.txt");
-        string actLogs = Path.Combine(logsFolder, "activityLogs.txt");
         string authLogs = Path.Combine(logsFolder, "authLogs.txt");
+        string cryptLogs = Path.Combine(logsFolder, "cryptLogs.txt");
+        string actLogs = Path.Combine(logsFolder, "processLogs.txt");
+        string line;
+        int procCount = 0;
         const string salt = "winLock";
         private string activity;
         const int iterations = 1000;
@@ -46,11 +48,6 @@ namespace com.codeBlack.winLock
             readAuthActivity();
             readCryptActivity();
             readActivity();
-
-
-
-
-
         }
 
         private void encryptButton_Click(object sender, EventArgs e)
@@ -59,7 +56,6 @@ namespace com.codeBlack.winLock
             {
                 if (inputForm.ShowDialog() == DialogResult.OK)
                 {
-
                     password = inputForm.Text;
                     OpenFileDialog _encryptOpenFileDialog = new OpenFileDialog();
                     _encryptOpenFileDialog.InitialDirectory = SrcFolder;
@@ -70,7 +66,6 @@ namespace com.codeBlack.winLock
                         logCryptActivity();
                         readCryptActivity();
                     }
-                    
                 }
                 else
                 {
@@ -105,7 +100,7 @@ namespace com.codeBlack.winLock
             }
         }
 
-        
+
         private void logCryptActivity()
         {
             using (StreamWriter encryptWriter = new StreamWriter(cryptLogs, true))
@@ -116,12 +111,15 @@ namespace com.codeBlack.winLock
         public void logProcessActivity()
         {
             Process[] processes = Process.GetProcesses();
+
             foreach (Process proc in processes)
             {
-                using(StreamWriter activityWriter = new StreamWriter(actLogs, true))
-                {
-                    activityWriter.WriteLine($"[{userRole.Text}] {username.Text} opened {proc.ProcessName}");
-                }
+                    using (StreamWriter activityWriter = new StreamWriter(actLogs, true))
+                    {
+                        procCount++;
+                        activityWriter.WriteLine($"[{procCount}] {DateTime.Now} - {username.Text} opened {proc.ProcessName}");
+                    }
+
             }
 
         }
@@ -131,16 +129,42 @@ namespace com.codeBlack.winLock
         {
             using (StreamReader readAuthActivity = new StreamReader(authLogs))
             {
-                activityLogs.Text = readAuthActivity.ReadToEnd();
+                if (userRole.Text == "administrator")
+                {
+                    authLogsContainer.Text = readAuthActivity.ReadToEnd();
+                }
+                else
+                {
+                    while ((line = readAuthActivity.ReadLine()) != null)
+                    {
+                        if (line.Contains(username.Text))
+                            authLogsContainer.Text += line;
+                    }
+                }
             }
         }
+
 
 
         public void readCryptActivity()
         {
             using (StreamReader readCryptActivity = new StreamReader(cryptLogs))
             {
-                encryptionLogs.Text = readCryptActivity.ReadToEnd();
+                
+                if (userRole.Text == "administrator") { 
+                    encryptionLogsContainer.Text = "[Session start]";
+                    encryptionLogsContainer.Text = readCryptActivity.ReadToEnd();
+                }
+                else
+                {
+                    while ((line = readCryptActivity.ReadLine()) != null)
+                    {
+                        if (line.Contains(username.Text))
+                        {
+                            encryptionLogsContainer.Text += line + Environment.NewLine;
+                        }
+                    }
+                }
             }
         }
 
@@ -148,15 +172,22 @@ namespace com.codeBlack.winLock
         {
             using (StreamReader readActivity = new StreamReader(actLogs))
             {
-                processLogs.Text = readActivity.ReadToEnd();
+                    if (userRole.Text == "administrator")
+                    {
+                        processLogsContainer.Text = readActivity.ReadToEnd();
+                    }
+                    else
+                    {
+                        while ((line = readActivity.ReadLine()) != null)
+                        {
+                            if (line.Contains(username.Text))
+                            {
+                                processLogsContainer.Text += line;
+                            }
+                        }
+                    }
             }
         }
-
-        
-
-        
-
-
         private void label2_Click(object sender, EventArgs e)
         {
 
@@ -164,7 +195,7 @@ namespace com.codeBlack.winLock
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            Timer.Text = DateTime.Now.ToString("HH:mm:ss"); ;
+            systime.Text = DateTime.Now.ToString("HH:mm:ss");
         }
 
         private void WinLock_Load(object sender, EventArgs e)
@@ -179,7 +210,7 @@ namespace com.codeBlack.winLock
 
         public void signOut_btn_Click(object sender, EventArgs e)
         {
-
+            procCount = 0;      
             Application.Restart();
 
         }
@@ -196,7 +227,13 @@ namespace com.codeBlack.winLock
 
         private void encryptActivityheader_Click(object sender, EventArgs e)
         {
-            
+
+        }
+
+        private void updateProcess_Tick(object sender, EventArgs e)
+        {
+
+           
         }
     }
 }

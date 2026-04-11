@@ -13,21 +13,18 @@ namespace com.codeBlack.winLock
     {
         public spash_screen()
         {
-            splash_timer.Interval = 10000;
-            splash_timer.Tick += splash_timer_Tick;
             splash_timer.Start();
+            ShowSplash();
+
         }
 
+        public async void ShowSplash()
+        {
+            await Task.Delay(10000);
+        }
         private void splash_timer_Tick(object sender, EventArgs e)
         {
-            splash_timer.Stop();
-
-            // Show Login Form
-            LoginForm login = new LoginForm();
-            login.Show();
-
-            // This hides the splash so the app stays alive 
-            // (Closing it here might shut down the whole app)
+            
            
         }
 
