@@ -11,7 +11,7 @@ namespace com.codeBlack.winLock
 {
     public partial class WinLock : Form
     {
-        const string SrcFolder = @"c:\WinLockFiles";
+        string SrcFolder = @"c:\WinLockFiles\";
         string line;
         int procCount = 0;
         const string salt = "winLock";
@@ -20,11 +20,11 @@ namespace com.codeBlack.winLock
         static public string role = "";
         public string activity ="";
         string authFilePath = "";
-        string password;
+        string password = "";
         private Encryption new_enc = new Encryption();
         
 
-        public WinLock(string accountHolderName, string role, string authFilePath)
+        public WinLock(string accountHolderName, string role, string authFilePath, string password)
         {
             InitializeComponent();            
             userRole.Text = role;
@@ -35,6 +35,10 @@ namespace com.codeBlack.winLock
             new_log.readAuthActivity();
             new_log.readCryptActivity();
             new_log.readActivity();
+            authLogsContainer.Text = new_log.authLogsContainerText;
+            encryptionLogsContainer.Text = new_log.encryptionLogsContainerText;
+            processLogsContainer.Text = new_log.processLogsContainerText;
+
             if (role != "administrator")
             {
                 accountsMgr_btn.Enabled = false;
@@ -47,19 +51,33 @@ namespace com.codeBlack.winLock
         {
             using (var inputForm = new encryptionKeyInputForm())
             {
+                Logging logEncrypt = new Logging(accountHolderName, role);
                 if (inputForm.ShowDialog() == DialogResult.OK)
                 {
-                    password = inputForm.Text;
+ 
                     OpenFileDialog _encryptOpenFileDialog = new OpenFileDialog();
                     _encryptOpenFileDialog.InitialDirectory = SrcFolder;
+                    _encryptOpenFileDialog.ShowDialog();
+                    /*
                     if (_encryptOpenFileDialog.ShowDialog() == DialogResult.OK)
                     {
-                        new_enc.DecryptFile(_encryptOpenFileDialog.FileName, password, salt, iterations);
-                        activity = "[Ecryption]";
-                        Logging logEncrypt = new Logging(accountHolderName, role);
-                        logEncrypt.logCryptActivity(activity);
-                        logEncrypt.readCryptActivity();
+                        try
+                        {
+
+
+                            new_enc.EncryptFile(_encryptOpenFileDialog.FileName, password, salt, iterations);
+                            activity = "[Ecryption]";
+
+                            logEncrypt.logCryptActivity(activity);
+                            logEncrypt.readCryptActivity();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("An error occured");
+                        }
+
                     }
+                    */
                 }
                 else
                 {
@@ -75,7 +93,6 @@ namespace com.codeBlack.winLock
             {
                 if (inputForm.ShowDialog() == DialogResult.OK)
                 {
-                    password = inputForm.Text;
                     OpenFileDialog _encryptOpenFileDialog = new OpenFileDialog();
                     _encryptOpenFileDialog.InitialDirectory = SrcFolder;
                     if (_encryptOpenFileDialog.ShowDialog() == DialogResult.OK)
@@ -102,8 +119,9 @@ namespace com.codeBlack.winLock
 
         public void signOut_btn_Click(object sender, EventArgs e)
         {
-            procCount = 0;      
-            Application.Restart();
+            OpenFileDialog d = new OpenFileDialog();
+            
+            d.ShowDialog();
 
         }
 

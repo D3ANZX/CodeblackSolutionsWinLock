@@ -5,7 +5,7 @@ namespace com.codeBlack.winLock
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>
-
+        [STAThread]
         public static void Main()
         {
             // To customize application configuration such as set high DPI settings or default font,
@@ -21,7 +21,7 @@ namespace com.codeBlack.winLock
                 if (newSession.ShowDialog() == DialogResult.OK)
                 {
                     
-                    Application.Run(new WinLock(newSession.username, newSession.role, newSession.authFilePath));
+                    Application.Run(new WinLock(newSession.username, newSession.role, newSession.authFilePath, newSession.password));
 
                 }
             }

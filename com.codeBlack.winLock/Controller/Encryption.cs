@@ -8,7 +8,7 @@ namespace com.codeBlack.winLock.Controller
 {
     public class Encryption
     {
-        private const string EncrFolder = @"C:\WinlockFiles\Encrypted";
+        private const string EncrFolder = @"C:\WinLockFiles\Encrypted";
         private const string DecrFolder = @"C:\WinLockFiles\Decrypted";
         private const string padLock = ".winlock";
 

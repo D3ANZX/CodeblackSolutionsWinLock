@@ -16,9 +16,9 @@ namespace com.codeBlack.winLock.Controller
         string username = "";
         string role = "";
         string line = "";
-        string authLogsContainerText = "";
-        string encryptionLogsContainerText = "";
-        string processLogsContainerText = "";
+        public string authLogsContainerText = "";
+        public string encryptionLogsContainerText = "";
+        public string processLogsContainerText = "";
 
 
         int procCount;

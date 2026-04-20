@@ -21,7 +21,7 @@ namespace com.codeBlack.winLock
         string[] data;
         public string username;
         public string role;
-        string password;
+        public string password;
         bool isAdmin;
         bool loginSuccess;
         string hashedInputPassword;

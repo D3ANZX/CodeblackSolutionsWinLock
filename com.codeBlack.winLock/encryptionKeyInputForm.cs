@@ -22,7 +22,8 @@ namespace com.codeBlack.winLock
 
         private void confirm_Click(object sender, EventArgs e)
         {
-
+            this.DialogResult = DialogResult.OK;
+            this.Close();
         }
     }
 }
