@@ -37,9 +37,9 @@
             userRole = new Label();
             pictureBox1 = new PictureBox();
             sidebar = new FlowLayoutPanel();
-            serviceMgr_btn = new Button();
             decryptButton = new Button();
             button1 = new Button();
+            serviceMgr_btn = new Button();
             accountsMgr_btn = new Button();
             signOut_btn = new Button();
             panel5 = new Panel();
@@ -59,7 +59,6 @@
             panel4 = new Panel();
             processActivityHeader = new Label();
             processLogsContainer = new RichTextBox();
-            updateProcess = new System.Windows.Forms.Timer(components);
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)logo).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -96,7 +95,6 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(1140, 80);
             panel1.TabIndex = 7;
-            panel1.Paint += panel1_Paint;
             // 
             // logo
             // 
@@ -121,7 +119,6 @@
             username.TabIndex = 10;
             username.Text = "user";
             username.TextAlign = ContentAlignment.MiddleLeft;
-            username.Click += username_Click;
             // 
             // userRole
             // 
@@ -135,7 +132,6 @@
             userRole.TabIndex = 11;
             userRole.Text = "role";
             userRole.TextAlign = ContentAlignment.MiddleLeft;
-            userRole.Click += label2_Click;
             // 
             // pictureBox1
             // 
@@ -162,27 +158,6 @@
             sidebar.Name = "sidebar";
             sidebar.Size = new Size(200, 690);
             sidebar.TabIndex = 8;
-            // 
-            // serviceMgr_btn
-            // 
-            serviceMgr_btn.BackColor = Color.FromArgb(18, 18, 18);
-            serviceMgr_btn.BackgroundImageLayout = ImageLayout.Center;
-            serviceMgr_btn.Cursor = Cursors.Hand;
-            serviceMgr_btn.FlatAppearance.BorderSize = 0;
-            serviceMgr_btn.FlatStyle = FlatStyle.Flat;
-            serviceMgr_btn.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            serviceMgr_btn.ForeColor = Color.White;
-            serviceMgr_btn.Image = (Image)resources.GetObject("serviceMgr_btn.Image");
-            serviceMgr_btn.ImageAlign = ContentAlignment.MiddleLeft;
-            serviceMgr_btn.Location = new Point(0, 144);
-            serviceMgr_btn.Margin = new Padding(0);
-            serviceMgr_btn.Name = "serviceMgr_btn";
-            serviceMgr_btn.Padding = new Padding(28, 0, 0, 0);
-            serviceMgr_btn.Size = new Size(200, 72);
-            serviceMgr_btn.TabIndex = 11;
-            serviceMgr_btn.Text = "Services Manager";
-            serviceMgr_btn.UseMnemonic = false;
-            serviceMgr_btn.UseVisualStyleBackColor = false;
             // 
             // decryptButton
             // 
@@ -229,6 +204,27 @@
             button1.UseMnemonic = false;
             button1.UseVisualStyleBackColor = false;
             button1.Click += encryptButton_Click;
+            // 
+            // serviceMgr_btn
+            // 
+            serviceMgr_btn.BackColor = Color.FromArgb(18, 18, 18);
+            serviceMgr_btn.BackgroundImageLayout = ImageLayout.Center;
+            serviceMgr_btn.Cursor = Cursors.Hand;
+            serviceMgr_btn.FlatAppearance.BorderSize = 0;
+            serviceMgr_btn.FlatStyle = FlatStyle.Flat;
+            serviceMgr_btn.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            serviceMgr_btn.ForeColor = Color.White;
+            serviceMgr_btn.Image = (Image)resources.GetObject("serviceMgr_btn.Image");
+            serviceMgr_btn.ImageAlign = ContentAlignment.MiddleLeft;
+            serviceMgr_btn.Location = new Point(0, 144);
+            serviceMgr_btn.Margin = new Padding(0);
+            serviceMgr_btn.Name = "serviceMgr_btn";
+            serviceMgr_btn.Padding = new Padding(28, 0, 0, 0);
+            serviceMgr_btn.Size = new Size(200, 72);
+            serviceMgr_btn.TabIndex = 11;
+            serviceMgr_btn.Text = "Services Manager";
+            serviceMgr_btn.UseMnemonic = false;
+            serviceMgr_btn.UseVisualStyleBackColor = false;
             // 
             // accountsMgr_btn
             // 
@@ -319,7 +315,6 @@
             systemTimeText.Size = new Size(147, 31);
             systemTimeText.TabIndex = 9;
             systemTimeText.Text = "System Time:";
-            systemTimeText.Click += label4_Click;
             // 
             // timer1
             // 
@@ -420,7 +415,6 @@
             encryptActivityheader.Size = new Size(205, 31);
             encryptActivityheader.TabIndex = 12;
             encryptActivityheader.Text = "Encryption Activity";
-            encryptActivityheader.Click += encryptActivityheader_Click;
             // 
             // encryptionLogsContainer
             // 
@@ -470,11 +464,6 @@
             processLogsContainer.TabIndex = 0;
             processLogsContainer.Text = " ";
             // 
-            // updateProcess
-            // 
-            updateProcess.Interval = 5000;
-            updateProcess.Tick += updateProcess_Tick;
-            // 
             // WinLock
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -499,7 +488,6 @@
             MinimizeBox = false;
             Name = "WinLock";
             Text = "WinLOCK";
-            Load += WinLock_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)logo).EndInit();
@@ -548,6 +536,5 @@
         private Panel panel5;
         private Label label3;
         private Label label2;
-        private System.Windows.Forms.Timer updateProcess;
     }
 }

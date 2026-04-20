@@ -15,7 +15,7 @@ namespace com.codeBlack.winLock
     public partial class LoginForm : Form
     {
         string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "accounts.csv");
-        static string authLogPath = @"C:\WinLockFiles\Logs";
+        public static string authLogPath = @"C:\WinLockFiles\Logs";
         public string authFilePath = Path.Combine(authLogPath, "authlogs.txt");
         private int maxAttempts = 3;
         string[] data;
