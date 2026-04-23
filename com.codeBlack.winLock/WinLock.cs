@@ -18,15 +18,15 @@ namespace com.codeBlack.winLock
         const int iterations = 1000;
         static public string accountHolderName = "";
         static public string role = "";
-        public string activity ="";
+        public string activity = "";
         string authFilePath = "";
         string password = "";
         private Encryption new_enc = new Encryption();
-        
+
 
         public WinLock(string accountHolderName, string role, string authFilePath, string password)
         {
-            InitializeComponent();            
+            InitializeComponent();
             userRole.Text = role;
             username.Text = accountHolderName;
             Logging new_log = new Logging(accountHolderName, role);
@@ -43,8 +43,6 @@ namespace com.codeBlack.winLock
             {
                 accountsMgr_btn.Enabled = false;
             }
-
-            
         }
 
         private void encryptButton_Click(object sender, EventArgs e)
@@ -54,18 +52,14 @@ namespace com.codeBlack.winLock
                 Logging logEncrypt = new Logging(accountHolderName, role);
                 if (inputForm.ShowDialog() == DialogResult.OK)
                 {
- 
+
                     OpenFileDialog _encryptOpenFileDialog = new OpenFileDialog();
                     _encryptOpenFileDialog.InitialDirectory = SrcFolder;
-                    _encryptOpenFileDialog.ShowDialog();
-                    /*
                     if (_encryptOpenFileDialog.ShowDialog() == DialogResult.OK)
                     {
                         try
                         {
-
-
-                            new_enc.EncryptFile(_encryptOpenFileDialog.FileName, password, salt, iterations);
+                            new_enc.EncryptFile(_encryptOpenFileDialog.FileName, inputForm.encryption_key, salt, iterations);
                             activity = "[Ecryption]";
 
                             logEncrypt.logCryptActivity(activity);
@@ -77,7 +71,6 @@ namespace com.codeBlack.winLock
                         }
 
                     }
-                    */
                 }
                 else
                 {
@@ -97,7 +90,7 @@ namespace com.codeBlack.winLock
                     _encryptOpenFileDialog.InitialDirectory = SrcFolder;
                     if (_encryptOpenFileDialog.ShowDialog() == DialogResult.OK)
                     {
-                        new_enc.DecryptFile(_encryptOpenFileDialog.FileName, password, salt, iterations);
+                        new_enc.DecryptFile(_encryptOpenFileDialog.FileName, inputForm.encryption_key, salt, iterations);
                     }
 
                     activity = "[Decryption]";
@@ -119,11 +112,18 @@ namespace com.codeBlack.winLock
 
         public void signOut_btn_Click(object sender, EventArgs e)
         {
-            OpenFileDialog d = new OpenFileDialog();
-            
-            d.ShowDialog();
+            Application.Restart();
 
         }
 
+        private void WinLock_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void authLogsContainer_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

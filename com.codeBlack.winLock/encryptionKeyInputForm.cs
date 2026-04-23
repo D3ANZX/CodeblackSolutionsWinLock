@@ -10,6 +10,7 @@ namespace com.codeBlack.winLock
 {
     public partial class encryptionKeyInputForm : Form
     {
+        public string encryption_key;
         public encryptionKeyInputForm()
         {
             InitializeComponent();
@@ -22,6 +23,7 @@ namespace com.codeBlack.winLock
 
         private void confirm_Click(object sender, EventArgs e)
         {
+            encryption_key = encryptionKeyField.Text;
             this.DialogResult = DialogResult.OK;
             this.Close();
         }

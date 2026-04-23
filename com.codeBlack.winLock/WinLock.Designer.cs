@@ -393,6 +393,7 @@
             authLogsContainer.Size = new Size(254, 453);
             authLogsContainer.TabIndex = 0;
             authLogsContainer.Text = "";
+            authLogsContainer.TextChanged += authLogsContainer_TextChanged;
             // 
             // panel3
             // 
@@ -488,6 +489,7 @@
             MinimizeBox = false;
             Name = "WinLock";
             Text = "WinLOCK";
+            Load += WinLock_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)logo).EndInit();

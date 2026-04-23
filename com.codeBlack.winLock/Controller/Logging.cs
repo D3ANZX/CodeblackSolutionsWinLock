@@ -23,7 +23,9 @@ namespace com.codeBlack.winLock.Controller
 
         int procCount;
 
-        public Logging(string username, string role) { 
+        public Logging(string username, string role) {
+            this.role = role;
+            this.username = username;
         if (!Directory.Exists(logsFolder))
             {
                 Directory.CreateDirectory(logsFolder);

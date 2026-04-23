@@ -14,8 +14,10 @@ namespace com.codeBlack.winLock
 
     public partial class LoginForm : Form
     {
-        string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "accounts.csv");
+       
+        public static string accountsPath = @"C:\WinLockFiles\env";
         public static string authLogPath = @"C:\WinLockFiles\Logs";
+        string filePath = Path.Combine(Path.Combine(accountsPath), "accounts.csv");
         public string authFilePath = Path.Combine(authLogPath, "authlogs.txt");
         private int maxAttempts = 3;
         string[] data;
@@ -31,6 +33,16 @@ namespace com.codeBlack.winLock
         public LoginForm()
         {
             InitializeComponent();
+            if (!Directory.Exists(accountsPath))
+            {
+                Directory.CreateDirectory(accountsPath);
+                using (FileStream accountsStream = new FileStream(Path.Combine(accountsPath, "accounts.csv"), FileMode.Create))
+                using (StreamWriter setAdmin = new StreamWriter(accountsStream))
+                {
+                    setAdmin.WriteLine("username,password,role,isEnabled");
+                    setAdmin.WriteLine("admin,adminwinlock,administrator,true");
+                }
+            }
         }
 
         public class user
