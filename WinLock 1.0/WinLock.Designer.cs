@@ -122,13 +122,13 @@
             panel5.Location = new Point(0, 0);
             panel5.Margin = new Padding(0);
             panel5.Name = "panel5";
-            panel5.Size = new Size(197, 125);
+            panel5.Size = new Size(200, 76);
             panel5.TabIndex = 7;
             // 
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(12, 42);
+            pictureBox1.Location = new Point(24, 20);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(38, 34);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -139,10 +139,10 @@
             // 
             userRole.BackColor = Color.Transparent;
             userRole.ForeColor = Color.White;
-            userRole.Location = new Point(56, 60);
+            userRole.Location = new Point(68, 42);
             userRole.Name = "userRole";
             userRole.RightToLeft = RightToLeft.No;
-            userRole.Size = new Size(129, 25);
+            userRole.Size = new Size(116, 25);
             userRole.TabIndex = 5;
             userRole.Text = "role";
             // 
@@ -150,7 +150,7 @@
             // 
             username.BackColor = Color.Transparent;
             username.ForeColor = Color.White;
-            username.Location = new Point(56, 42);
+            username.Location = new Point(68, 20);
             username.Name = "username";
             username.RightToLeft = RightToLeft.No;
             username.Size = new Size(96, 25);
@@ -162,7 +162,7 @@
             accessLogsBtn.FlatAppearance.BorderSize = 0;
             accessLogsBtn.FlatStyle = FlatStyle.Flat;
             accessLogsBtn.ForeColor = Color.White;
-            accessLogsBtn.Location = new Point(0, 125);
+            accessLogsBtn.Location = new Point(0, 76);
             accessLogsBtn.Margin = new Padding(0);
             accessLogsBtn.Name = "accessLogsBtn";
             accessLogsBtn.Size = new Size(200, 60);
@@ -175,7 +175,7 @@
             encryptLogsBtn.FlatAppearance.BorderSize = 0;
             encryptLogsBtn.FlatStyle = FlatStyle.Flat;
             encryptLogsBtn.ForeColor = Color.White;
-            encryptLogsBtn.Location = new Point(0, 185);
+            encryptLogsBtn.Location = new Point(0, 136);
             encryptLogsBtn.Margin = new Padding(0);
             encryptLogsBtn.Name = "encryptLogsBtn";
             encryptLogsBtn.Size = new Size(200, 60);
@@ -188,7 +188,7 @@
             processLogsBtn.FlatAppearance.BorderSize = 0;
             processLogsBtn.FlatStyle = FlatStyle.Flat;
             processLogsBtn.ForeColor = Color.White;
-            processLogsBtn.Location = new Point(0, 245);
+            processLogsBtn.Location = new Point(0, 196);
             processLogsBtn.Margin = new Padding(0);
             processLogsBtn.Name = "processLogsBtn";
             processLogsBtn.Size = new Size(200, 60);
@@ -201,7 +201,7 @@
             encryptBtn.FlatAppearance.BorderSize = 0;
             encryptBtn.FlatStyle = FlatStyle.Flat;
             encryptBtn.ForeColor = Color.White;
-            encryptBtn.Location = new Point(0, 305);
+            encryptBtn.Location = new Point(0, 256);
             encryptBtn.Margin = new Padding(0);
             encryptBtn.Name = "encryptBtn";
             encryptBtn.Size = new Size(200, 60);
@@ -214,7 +214,7 @@
             decryptButton.FlatAppearance.BorderSize = 0;
             decryptButton.FlatStyle = FlatStyle.Flat;
             decryptButton.ForeColor = Color.White;
-            decryptButton.Location = new Point(0, 365);
+            decryptButton.Location = new Point(0, 316);
             decryptButton.Margin = new Padding(0);
             decryptButton.Name = "decryptButton";
             decryptButton.Size = new Size(200, 60);
@@ -227,7 +227,7 @@
             accountsMgr_btn.FlatAppearance.BorderSize = 0;
             accountsMgr_btn.FlatStyle = FlatStyle.Flat;
             accountsMgr_btn.ForeColor = Color.White;
-            accountsMgr_btn.Location = new Point(0, 425);
+            accountsMgr_btn.Location = new Point(0, 376);
             accountsMgr_btn.Margin = new Padding(0);
             accountsMgr_btn.Name = "accountsMgr_btn";
             accountsMgr_btn.Size = new Size(200, 60);
@@ -240,7 +240,7 @@
             signOut_btn.FlatAppearance.BorderSize = 0;
             signOut_btn.FlatStyle = FlatStyle.Flat;
             signOut_btn.ForeColor = Color.White;
-            signOut_btn.Location = new Point(0, 485);
+            signOut_btn.Location = new Point(0, 436);
             signOut_btn.Margin = new Padding(0);
             signOut_btn.Name = "signOut_btn";
             signOut_btn.Size = new Size(200, 60);
@@ -485,7 +485,9 @@
             Controls.Add(panel3);
             Controls.Add(sidebar);
             Controls.Add(panel4);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
             Name = "WinLock";
             Text = "WinLOCK";
             panel1.ResumeLayout(false);

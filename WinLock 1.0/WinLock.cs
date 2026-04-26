@@ -24,8 +24,6 @@ namespace com.codeBlack.winLock
         public WinLock(string accountHolderName, string role, string authFilePath, string password, string expiresAt)
         {
             InitializeComponent();
-
-            // SESSION START
             loginStartTime = DateTime.Now;
 
             WinLock.accountHolderName = accountHolderName;
@@ -46,6 +44,7 @@ namespace com.codeBlack.winLock
             log.readAuthActivity();
             log.readCryptActivity();
             log.readActivity();
+
 
             authLogsContainer.Text = log.authLogsContainerText;
             encryptionLogsContainer.Text = log.encryptionLogsContainerText;
@@ -195,6 +194,11 @@ namespace com.codeBlack.winLock
         }
 
         private void accessActivityPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
         }

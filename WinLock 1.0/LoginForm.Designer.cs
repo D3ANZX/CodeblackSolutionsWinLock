@@ -140,6 +140,7 @@
             Controls.Add(label1);
             Controls.Add(panel1);
             Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
             Name = "LoginForm";
             Text = "WinLOCK";
             Load += LoginForm_Load;

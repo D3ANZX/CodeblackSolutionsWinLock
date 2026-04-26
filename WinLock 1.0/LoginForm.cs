@@ -25,7 +25,6 @@ namespace com.codeBlack.winLock
         public string username;
         public string role;
 
-        // ✅ THIS IS WHAT YOU WANTED
         public string CurrentUserExpiryString;
 
         bool loginSuccess;
@@ -126,7 +125,7 @@ namespace com.codeBlack.winLock
                     if (remaining.TotalHours <= 72)
                     {
                         MessageBox.Show(
-                            $"⚠ Expiring soon:\n{remaining.Days}d {remaining.Hours}h {remaining.Minutes}m",
+                            $"Expiring soon:\n{remaining.Days}d {remaining.Hours}h {remaining.Minutes}m",
                             "Expiry Warning",
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Information
@@ -214,7 +213,7 @@ namespace com.codeBlack.winLock
 
             using (StreamWriter authLogger = new StreamWriter(authFilePath, true))
             {
-                authLogger.WriteLine($"[{DateTime.Now}] Login attempt: {username}");
+                authLogger.WriteLine($"[AUTHENTICATION] [{DateTime.Now}] Login attempt: {username}");
             }
         }
 
@@ -249,7 +248,7 @@ namespace com.codeBlack.winLock
                 RegistryKey explorerPolicy = Registry.CurrentUser.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Policies\Explorer");
                 explorerPolicy.SetValue("NoRun", 1, RegistryValueKind.DWord);
 
-                MessageBox.Show("Welcome! Please login to WinLock to continue using your computer.");
+                MessageBox.Show("Welcome! Please login to WinLock to continue using your computer. Thank you!");
             }
             catch (Exception ex)
             {

@@ -238,7 +238,9 @@
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(851, 536);
             Controls.Add(panel1);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
             Name = "AccountsManager";
             Text = "AccountsManager";
             panel1.ResumeLayout(false);

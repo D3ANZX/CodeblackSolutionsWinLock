@@ -47,7 +47,7 @@
             ClientSize = new Size(924, 503);
             ControlBox = false;
             Cursor = Cursors.AppStarting;
-            FormBorderStyle = FormBorderStyle.None;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "spash_screen";
             Text = "spash_screen";
             Load += spash_screen_Load;

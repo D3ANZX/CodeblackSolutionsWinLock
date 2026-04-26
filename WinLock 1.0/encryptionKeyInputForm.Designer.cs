@@ -110,8 +110,10 @@
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(619, 363);
             Controls.Add(panel1);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(4);
+            MinimizeBox = false;
             Name = "encryptionKeyInputForm";
             Text = "encryptionKeyInputForm";
             Load += encryptionKeyInputForm_Load;

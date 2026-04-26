@@ -11,7 +11,6 @@ namespace com.codeBlack.winLock.Controller
         string authLogs = Path.Combine(logsFolder, "authLogs.txt");
         string cryptLogs = Path.Combine(logsFolder, "cryptLogs.txt");
         string actLogs = Path.Combine(logsFolder, "processLogs.txt");
-        string sessionLogs = Path.Combine(logsFolder, "sessionLogs.txt");
 
         string username = "";
         string role = "";
@@ -28,23 +27,40 @@ namespace com.codeBlack.winLock.Controller
             this.username = username;
             this.role = role;
 
-            // ================= ENSURE FOLDER + FILES EXIST =================
             if (!Directory.Exists(logsFolder))
                 Directory.CreateDirectory(logsFolder);
 
             CreateFileIfMissing(authLogs);
             CreateFileIfMissing(cryptLogs);
             CreateFileIfMissing(actLogs);
-            CreateFileIfMissing(sessionLogs);
         }
 
-        // ================= FILE CREATION SAFETY =================
+        // ================= FILE CREATION =================
         private void CreateFileIfMissing(string path)
         {
             if (!File.Exists(path))
             {
                 using (FileStream fs = File.Create(path)) { }
             }
+        }
+
+        // ================= GENERIC READ =================
+        private string ReadLog(string path)
+        {
+            CreateFileIfMissing(path);
+            string result = "";
+
+            using (StreamReader reader = new StreamReader(path))
+            {
+                string l;
+                while ((l = reader.ReadLine()) != null)
+                {
+                    if (role == "administrator" || l.Contains($"USER: {username}"))
+                        result += l + Environment.NewLine;
+                }
+            }
+
+            return result;
         }
 
         // ================= ENCRYPT / DECRYPT LOG =================
@@ -77,68 +93,33 @@ namespace com.codeBlack.winLock.Controller
             }
         }
 
-        // ================= SESSION LOG =================
+        // ================= SESSION LOG (NOW INTO AUTH LOGS) =================
         public void logSessionActivity(DateTime start, DateTime end, TimeSpan duration)
         {
-            CreateFileIfMissing(sessionLogs);
+            CreateFileIfMissing(authLogs);
 
-            using (StreamWriter writer = new StreamWriter(sessionLogs, true))
+            using (StreamWriter writer = new StreamWriter(authLogs, true))
             {
                 writer.WriteLine(
-                    $"USER: {username} | ROLE: {role} | START: {start} | END: {end} | DURATION: {duration:hh\\:mm\\:ss}"
+                    $"[SESSION] USER: {username} | ROLE: {role} | START: {start} | END: {end} | DURATION: {duration:hh\\:mm\\:ss}"
                 );
             }
         }
 
-        // ================= READ AUTH =================
+        // ================= READ METHODS =================
         public void readAuthActivity()
         {
-            CreateFileIfMissing(authLogs);
-
-            authLogsContainerText = "";
-
-            using (StreamReader reader = new StreamReader(authLogs))
-            {
-                while ((line = reader.ReadLine()) != null)
-                {
-                    if (role == "administrator" || line.Contains(username))
-                        authLogsContainerText += line + Environment.NewLine;
-                }
-            }
+            authLogsContainerText = ReadLog(authLogs);
         }
 
-        // ================= READ CRYPTO =================
         public void readCryptActivity()
         {
-            CreateFileIfMissing(cryptLogs);
-
-            encryptionLogsContainerText = "";
-
-            using (StreamReader reader = new StreamReader(cryptLogs))
-            {
-                while ((line = reader.ReadLine()) != null)
-                {
-                    if (role == "administrator" || line.Contains(username))
-                        encryptionLogsContainerText += line + Environment.NewLine;
-                }
-            }
+            encryptionLogsContainerText = ReadLog(cryptLogs);
         }
 
-        // ================= READ PROCESS =================
         public void readActivity()
         {
-            CreateFileIfMissing(actLogs);
-
-            processLogsContainerText = "";
-
-            using (StreamReader reader = new StreamReader(actLogs))
-            {
-                while ((line = reader.ReadLine()) != null)
-                {
-                    if (role == "administrator" || line.Contains(username))
-                        processLogsContainerText += line + Environment.NewLine;
-                }
-            }
+            processLogsContainerText = ReadLog(actLogs);
         }
     }
 }
